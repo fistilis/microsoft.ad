@@ -1,6 +1,6 @@
 ---
 bugfixes:
-  - event_query - ``canonical_facts`` used ``sid: ($data.sid // null)``, so a
+  - event_query - ``canonical_facts`` set ``sid`` to ``($data.sid // null)``, so a
     computer object whose result carried no SID emitted a ``null`` inside
     ``canonical_facts``. The controller raises ``UnhashableFacts`` on a ``null``
     there and silently discards the entire audit record, so those hosts were
