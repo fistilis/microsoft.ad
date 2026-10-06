@@ -99,6 +99,7 @@
 # -----------------------------------------------------------------
 microsoft.ad.computer:
   query: >-
+    . as $data |
     if ($data.object_guid // null) != null
       and ($data.distinguished_name // null) != null
     then {
