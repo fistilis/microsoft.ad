@@ -9,8 +9,9 @@ bugfixes:
     sufficient and immutable identity.
 minor_changes:
   - event_query - added ``tests/unit/audit/test_event_query_contract.py``, which
-    asserts the contract ``awx/main/tasks/host_indirect.py`` imposes on
-    ``extensions/audit/event_query.yml`` - non-null top-level ``name``, a
-    non-empty ``canonical_facts`` containing no ``null`` at any depth,
-    identity-only deduplication keys, and normalised taxonomy values. The checks
-    are static, so they need no domain controller and run on every change.
+    compiles ``extensions/audit/event_query.yml`` with ``jq`` and runs it
+    against the module's own documented ``RETURN`` samples, asserting what the
+    query emits - one record per managed object, a non-null ``name`` that is the
+    immutable ``object_guid``, and a ``canonical_facts`` holding no ``null``,
+    which ``awx/main/tasks/host_indirect.py`` would otherwise discard the record
+    for. No domain controller is needed, so it runs on every change.

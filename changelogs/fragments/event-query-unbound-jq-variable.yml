@@ -11,6 +11,6 @@ bugfixes:
     input with ``. as $data |`` fixes it. Verified against a running Automation
     Platform 2.7 controller.
 minor_changes:
-  - event_query - the contract test now compiles every expression with ``jq``.
-    Every other check in that file reads the query as text, so all of them passed
-    on an expression that could not run.
+  - event_query - the contract test now compiles every expression with ``jq``
+    before running it. The checks it replaced read the query as text, so all of
+    them passed on an expression that could not run at all.
